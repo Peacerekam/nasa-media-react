@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { debounce } from "lodash";
 import { useFetchImages } from "../../hooks";
@@ -22,12 +22,8 @@ export const SearchPage = () => {
     yearEnd: yearsRange[1],
   });
 
-  const debouncedSetSearchText = useCallback(debounce(setSearchText, 350), [
-    setSearchText,
-  ]);
-  const debouncedSetYearsRange = useCallback(debounce(setYearsRange, 350), [
-    setYearsRange,
-  ]);
+  const debouncedSetSearchText = useMemo(() => debounce(setSearchText, 350), []);
+  const debouncedSetYearsRange = useMemo(() => debounce(setYearsRange, 350), []);
 
   useEffect(() => {
     setPage(1);

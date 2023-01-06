@@ -21,7 +21,7 @@ function App() {
       <BrowserRouter basename="/">
         <Link to="/">
           <div title="Go to main page" className="nasa-logo-wrapper">
-            <img src={NasaLogo} />
+            <img alt="NASA logo" src={NasaLogo} />
             <span className="logo-label">Image Search API</span>
           </div>
         </Link>
