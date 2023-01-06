@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <div className="content-wrapper">
-      <BrowserRouter basename="/">
+      <BrowserRouter basename="/nasa-media-react">
         <Link to="/">
           <div title="Go to main page" className="nasa-logo-wrapper">
             <img alt="NASA logo" src={NasaLogo} />
