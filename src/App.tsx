@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { SearchPage, ShowPage } from "./pages";
+import NasaLogo from "./assets/nasa-logo-web-rgb.png";
+import "./style.scss";
+
+export const API_URL = "https://images-api.nasa.gov";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 20, // 20s
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="content-wrapper">
+      <BrowserRouter basename="/">
+        <Link to="/">
+          <div title="Go to main page" className="nasa-logo-wrapper">
+            <img src={NasaLogo} />
+            <span className="logo-label">Image Search API</span>
+          </div>
+        </Link>
+        <QueryClientProvider client={queryClient}>
+          <Routes>
+            <Route path="/" element={<SearchPage />} />
+            <Route path="/show/:nasaId" element={<ShowPage />} />
+            <Route path="*" element={"404"} />
+          </Routes>
+        </QueryClientProvider>
+      </BrowserRouter>
     </div>
   );
 }
