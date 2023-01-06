@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
+import { Routes, Route, HashRouter, Link } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { SearchPage, ShowPage } from "./pages";
 import NasaLogo from "./assets/nasa-logo-web-rgb.png";
@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <div className="content-wrapper">
-      <BrowserRouter basename="/nasa-media-react">
+      <HashRouter basename="/">
         <Link to="/">
           <div title="Go to main page" className="nasa-logo-wrapper">
             <img alt="NASA logo" src={NasaLogo} />
@@ -32,7 +32,7 @@ function App() {
             <Route path="*" element={"404"} />
           </Routes>
         </QueryClientProvider>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
